@@ -36,6 +36,7 @@ module Backend
         origins '*'
         resource '*',
           :headers => :any,
+          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
           :methods => [:get, :put, :post, :delete, :options]
       end
     end
