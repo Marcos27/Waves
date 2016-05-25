@@ -6,7 +6,7 @@
 
     function LikeResource($resource) {
       return $resource(
-        "http://localhost:3000/api/musics/:id",
+        "http://localhost:3000/api/likes/:id",
         {id: '@id'}, {
           'update': { method: 'PUT'}
         }

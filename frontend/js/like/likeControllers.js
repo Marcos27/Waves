@@ -6,29 +6,19 @@
     .controller("LikeEditController", LikeEditController);
 
 
-    LikeListController.$inject = ['LikeResource', '$auth'];
+    LikeListController.$inject = ['LikeResource'];
     LikeShowController.$inject = ['LikeResource', '$stateParams'];
     LikeNewController.$inject  = ['LikeResource', '$state'];
     LikeEditController.$inject = ['LikeResource', '$stateParams', '$state'];
 
-    function LikeListController(LikeResource, $auth) {
+    function LikeListController(LikeResource) {
       var vm = this;
       vm.likes = [];
-      vm.spotifyLogin = spotifyLogin;
 
       LikeResource.query().$promise.then(function(likes) {
         vm.likes = likes;
       });
 
-      function spotifyLogin() {
-        $auth.authenticate('spotify')
-          .then(function(resp) {
-            console.log(resp)
-          })
-          .catch(function(resp) {
-            console.log('errors: ', resp)
-          });
-      }
     }
 
     function LikeShowController(LikeResource, $stateParams) {
@@ -65,7 +55,7 @@
       function editLike() {
         LikeResource.update({id: vm.like.id}, vm.like).$promise.then(function(updatedLike) {
           vm.like = updatedLike;
-          $state.go('musicShow', {id: updatedLike.id});
+          $state.go('likeShow', {id: updatedLike.id});
         });
       }
     }

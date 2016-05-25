@@ -6,29 +6,18 @@
     .controller("MusicEditController", MusicEditController);
 
 
-    MusicListController.$inject = ['MusicResource', '$auth'];
+    MusicListController.$inject = ['MusicResource'];
     MusicShowController.$inject = ['MusicResource', '$stateParams'];
     MusicNewController.$inject  = ['MusicResource', '$state'];
     MusicEditController.$inject = ['MusicResource', '$stateParams', '$state'];
 
-    function MusicListController(MusicResource, $auth) {
+    function MusicListController(MusicResource) {
       var vm = this;
       vm.musics = [];
-      vm.spotifyLogin = spotifyLogin;
 
       MusicResource.query().$promise.then(function(musics) {
         vm.musics = musics;
       });
-
-      function spotifyLogin() {
-        $auth.authenticate('spotify')
-          .then(function(resp) {
-            console.log(resp)
-          })
-          .catch(function(resp) {
-            console.log('errors: ', resp)
-          });
-      }
     }
 
     function MusicShowController(MusicResource, $stateParams) {

@@ -12,18 +12,18 @@
 
     function PlaylistListController(PlaylistResource) {
       var vm = this;
-      vm.shows = [];
+      vm.playlists = [];
       vm.destroy = destroy;
 
-      PlaylistResource.query().$promise.then(function(shows) {
-        vm.shows = shows;
+      PlaylistResource.query().$promise.then(function(playlists) {
+        vm.playlists = playlists;
       });
 
       function destroy(showToDelete) {
         PlaylistResource.delete({id: showToDelete.id}).$promise.then(function (response) {
           console.log(response.message);
-          vm.shows = vm.shows.filter(function(show) {
-            return show != showToDelete;
+          vm.playlists = vm.playlists.filter(function(playlist) {
+            return playlist != playlistToDelete;
           });
         });
       }
@@ -31,10 +31,10 @@
 
     function PlaylistShowController(PlaylistResource, $stateParams) {
       var vm = this;
-      vm.show = {};
+      vm.playlist = {};
 
       PlaylistResource.get({id: $stateParams.id}).$promise.then(function(jsonPlaylist) {
-          vm.show = jsonPlaylist;
+          vm.playlist = jsonPlaylist;
       });
     }
 

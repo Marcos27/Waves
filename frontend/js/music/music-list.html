@@ -1,9 +1,23 @@
-<h1>music list page</h1>
+<center>
+  <h1>
+    music list page
+  </h1>
+  <div ng-repeat="music in musicListVm.musics">
+    {{music.artist}}
+    <br>
+    <hr>
+    {{music.song}}
+    <br>
+    <hr>
+    {{music.song_url}}
+    <br>
+    <hr>
+    {{music.genre}}
+    <br>
+    <hr>
+    {{music.bio}}
+    <br>
+    <hr>
+  </div>
 
-<button ng-click="musicListVm.spotifyLogin()">
-  sign in with spotify
-</button>
-
-{{musicListVm.musics}}
-
-
+</center>
