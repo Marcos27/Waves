@@ -62,8 +62,8 @@
           vm.music = jsonMusic;
       });
 
-      function editShow() {
-        MusicResource.update({id: vm.music.id}, vm.music).$promise.then(function(updatedShow) {
+      function editMusic() {
+        MusicResource.update({id: vm.music.id}, vm.music).$promise.then(function(updatedMusic) {
           vm.music = updatedMusic;
           $state.go('musicShow', {id: updatedMusic.id});
         });
