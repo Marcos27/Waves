@@ -62,7 +62,7 @@ a{
 }
 .left-side-video-cover-all {
      border: 0px solid black;
-    width: 54%;
+    width: 54.2%;
     display: inline-block;
     height: 321px;
     float: none;
@@ -166,6 +166,7 @@ iframe {
 
 
 .music-post{
+  margin-top: 40px;
     display: inline-block;
     border: 2px solid black;
     width: 99%;
