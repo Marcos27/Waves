@@ -53,16 +53,16 @@
 
     function PlaylistEditController(PlaylistResource, $stateParams, $state) {
       var vm = this;
-      vm.show = {};
+      vm.playlist = {};
       vm.editPlaylist = editPlaylist;
 
       PlaylistResource.get({id: $stateParams.id}).$promise.then(function(jsonPlaylist) {
-          vm.show = jsonPlaylist;
+          vm.playlist = jsonPlaylist;
       });
 
       function editPlaylist() {
-        PlaylistResource.update({id: vm.show.id}, vm.show).$promise.then(function(updatedPlaylist) {
-          vm.show = updatedPlaylist;
+        PlaylistResource.update({id: vm.playlist.id}, vm.playlist).$promise.then(function(updatedPlaylist) {
+          vm.playlist = updatedPlaylist;
           $state.go('showPlaylist', {id: updatedPlaylist.id});
         });
       }
