@@ -6,18 +6,48 @@
     .controller("MusicEditController", MusicEditController);
 
 
-    MusicListController.$inject = ['MusicResource'];
+    MusicListController.$inject = ['MusicResource', '$sce'];
     MusicShowController.$inject = ['MusicResource', '$stateParams'];
     MusicNewController.$inject  = ['MusicResource', '$state'];
     MusicEditController.$inject = ['MusicResource', '$stateParams', '$state'];
 
-    function MusicListController(MusicResource) {
+    function MusicListController(MusicResource, $sce) {
       var vm = this;
       vm.musics = [];
+      vm.musicplayerFunction = musicplayerFunction;
+      vm.musicstoperFunction = musicstoperFunction;
+      vm.musicSrc = musicSrc
 
       MusicResource.query().$promise.then(function(musics) {
         vm.musics = musics;
+        vm.musics.forEach(function (music) {
+          music.playing = false
+        })
       });
+
+      function musicplayerFunction(i) {
+         // var i = $(event.target).data().index
+          for(var j = 0; j < vm.musics.length; j++) {
+              vm.musics[j].playing = false;
+          }
+          vm.musics[i].playing = true
+          // console.log("playing song");
+      }
+       function musicstoperFunction(i) {
+         vm.musics[i].playing = false
+      }
+      function musicSrc(music) {
+        song_url = music.song_url;
+        // console.log(song_url)
+        var newSong = song_url.split('v=')[1].split('&')[0];
+        // console.log(newSong)
+        var player = "https://www.youtube.com/embed/" + newSong;
+        // console.log(player)
+        if (music.playing) {
+          player += "?autoplay=1";
+        }
+        return $sce.trustAsResourceUrl(player);
+      }
     }
 
     function MusicShowController(MusicResource, $stateParams) {
