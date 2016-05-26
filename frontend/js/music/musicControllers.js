@@ -3,13 +3,19 @@
     .controller("MusicListController", MusicListController)
     .controller("MusicShowController", MusicShowController)
     .controller("MusicNewController", MusicNewController)
-    .controller("MusicEditController", MusicEditController);
+    .controller("MusicEditController", MusicEditController)
+
 
 
     MusicListController.$inject = ['MusicResource', '$sce'];
     MusicShowController.$inject = ['MusicResource', '$stateParams'];
     MusicNewController.$inject  = ['MusicResource', '$state'];
     MusicEditController.$inject = ['MusicResource', '$stateParams', '$state'];
+
+
+
+
+
 
 
     function MusicListController(MusicResource, $sce) {
@@ -26,16 +32,22 @@
         })
       });
 
-      function musicplayerFunction(i) {
+      vm.sortType     = 'name'; // set the default sort type
+      vm.sortReverse  = false;  // set the default sort order
+      vm.searchMusic   = '';     // set the default search/filter term
+
+
+      function musicplayerFunction(music) {
          // var i = $(event.target).data().index
+         console.log(music)
           for(var j = 0; j < vm.musics.length; j++) {
               vm.musics[j].playing = false;
           }
-          vm.musics[i].playing = true
+          music.playing = true
           // console.log("playing song");
       }
-       function musicstoperFunction(i) {
-         vm.musics[i].playing = false
+       function musicstoperFunction(music) {
+         music.playing = false
       }
       function musicSrc(music) {
         song_url = music.song_url;
