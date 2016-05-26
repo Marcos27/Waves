@@ -2,7 +2,6 @@
   angular.module('wavesApp')
     .controller("MusicListController", MusicListController)
     .controller("MusicShowController", MusicShowController)
-    .controller("MusicNewController", MusicNewController)
     .controller("MusicEditController", MusicEditController)
 
     MusicListController.$inject = ['MusicResource', '$sce'];
