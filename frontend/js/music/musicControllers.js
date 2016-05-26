@@ -17,7 +17,9 @@
       vm.musics = [];
       vm.musicplayerFunction = musicplayerFunction;
       vm.musicstoperFunction = musicstoperFunction;
-      vm.musicSrc = musicSrc
+      vm.musicSrc = musicSrc;
+      vm.newMusic = {};
+      vm.addMusic = addMusic;
 
       MusicResource.query().$promise.then(function(musics) {
         vm.musics = musics;
@@ -25,6 +27,13 @@
           music.playing = false
         })
       });
+
+      function addMusic() {
+        MusicResource.save(vm.newMusic).$promise.then(function(jsonMusic) {
+          vm.newMusic = {};
+          $state.go('musicList', {id: jsonMusic.id});
+        });
+      }
 
       function musicplayerFunction(i) {
          // var i = $(event.target).data().index
@@ -58,19 +67,6 @@
        MusicResource.get({id: $stateParams.id}).$promise.then(function(jsonMusic) {
             vm.music = jsonMusic;
       });
-    }
-
-    function MusicNewController(MusicResource, $state) {
-      var vm = this;
-      vm.newMusic = {};
-      vm.addMusic = addMusic;
-
-      function addMusic() {
-        MusicResource.save(vm.newMusic).$promise.then(function(jsonMusic) {
-          vm.newMusic = {};
-          $state.go('musicShow', {id: jsonMusic.id});
-        });
-      }
     }
 
     function MusicEditController(MusicResource, $stateParams, $state) {

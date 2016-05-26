@@ -18,6 +18,7 @@
           controller: 'MusicListController',
           controllerAs: 'musicListVm'
         })
+
         .state('musicShow', {
           url: '/music/show/:id',
           templateUrl: 'js/music/music-show.html',
@@ -26,7 +27,7 @@
         })
         .state('musicNew', {
           url: '/music/new',
-          templateUrl: 'js/music/music-list.html',
+          templateUrl: 'js/music/music-new.html',
           controller: 'MusicNewController',
           controllerAs: 'musicNewVm'
         })
