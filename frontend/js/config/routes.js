@@ -24,7 +24,7 @@
         })
         .state('musicNew', {
           url: '/music/new',
-          templateUrl: 'js/music/music-new.html',
+          templateUrl: 'js/music/music-list.html',
           controller: 'MusicNewController',
           controllerAs: 'musicNewVm'
         })
