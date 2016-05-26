@@ -3,12 +3,15 @@
     .controller("MusicListController", MusicListController)
     .controller("MusicShowController", MusicShowController)
     .controller("MusicNewController", MusicNewController)
-    .controller("MusicEditController", MusicEditController)
+    .controller("MusicEditController", MusicEditController);
+
 
     MusicListController.$inject = ['MusicResource', '$sce'];
     MusicShowController.$inject = ['MusicResource', '$stateParams'];
     MusicNewController.$inject  = ['MusicResource', '$state'];
     MusicEditController.$inject = ['MusicResource', '$stateParams', '$state'];
+
+
     function MusicListController(MusicResource, $sce) {
       var vm = this;
       vm.musics = [];
@@ -22,6 +25,7 @@
           music.playing = false
         })
       });
+
       function musicplayerFunction(i) {
          // var i = $(event.target).data().index
           for(var j = 0; j < vm.musics.length; j++) {
@@ -55,7 +59,8 @@
             vm.music = jsonMusic;
       });
     }
-     function MusicNewController(MusicResource, $state) {
+
+    function MusicNewController(MusicResource, $state) {
       var vm = this;
       vm.newMusic = {};
       vm.addMusic = addMusic;
@@ -67,6 +72,7 @@
         });
       }
     }
+
     function MusicEditController(MusicResource, $stateParams, $state) {
       var vm = this;
       vm.music = {};
@@ -76,8 +82,8 @@
           vm.music = jsonMusic;
       });
 
-      function editShow() {
-        MusicResource.update({id: vm.music.id}, vm.music).$promise.then(function(updatedShow) {
+      function editMusic() {
+        MusicResource.update({id: vm.music.id}, vm.music).$promise.then(function(updatedMusic) {
           vm.music = updatedMusic;
           $state.go('musicShow', {id: updatedMusic.id});
         });
