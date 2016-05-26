@@ -16,9 +16,13 @@
           url: '/music/list',
           templateUrl: 'js/music/music-list.html',
           controller: 'MusicListController',
-          controllerAs: 'musicListVm'
+          controllerAs: 'musicListVm',
+          resolve: {
+            auth: function($auth) {
+              return $auth.validateUser();
+            }
+          }
         })
-
         .state('musicShow', {
           url: '/music/show/:id',
           templateUrl: 'js/music/music-show.html',
@@ -29,19 +33,18 @@
           url: '/music/new',
           templateUrl: 'js/music/music-new.html',
           controller: 'MusicNewController',
-          controllerAs: 'musicNewVm'
+          controllerAs: 'musicNewVm',
+          resolve: {
+            auth: function($auth) {
+              return $auth.validateUser();
+            }
+          }
         })
         .state('musicEdit', {
           url: '/music/edit/:id',
           templateUrl: 'js/music/music-edit.html',
           controller: 'MusicEditController',
           controllerAs: 'musicEditVm'
-        })
-        .state("signin", {
-          url:          "/signin",
-          templateUrl:  "/js/auth/signin.html",
-          controller:   "SignInController",
-          controllerAs: "vm"
         })
         .state('playlistList', {
           url: '/playlist/list',

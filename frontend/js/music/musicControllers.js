@@ -7,7 +7,6 @@
 
     MusicListController.$inject = ['MusicResource', '$sce'];
     MusicShowController.$inject = ['MusicResource', '$stateParams'];
-    MusicNewController.$inject  = ['MusicResource', '$state'];
     MusicEditController.$inject = ['MusicResource', '$stateParams', '$state'];
 
 
