@@ -2,7 +2,6 @@
   angular.module('wavesApp')
     .controller("MusicListController", MusicListController)
     .controller("MusicShowController", MusicShowController)
-    .controller("MusicNewController", MusicNewController)
     .controller("MusicEditController", MusicEditController);
 
 
@@ -31,7 +30,7 @@
       function addMusic() {
         MusicResource.save(vm.newMusic).$promise.then(function(jsonMusic) {
           vm.newMusic = {};
-          $state.go('musicList', {id: jsonMusic.id});
+          vm.musics.push(jsonMusic)
         });
       }
 
